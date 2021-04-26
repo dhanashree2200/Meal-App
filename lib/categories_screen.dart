@@ -4,7 +4,6 @@ import 'package:meal_app/dummy_data.dart';
 import 'category_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +14,10 @@ class CategoriesScreen extends StatelessWidget {
       body: GridView(
         padding: EdgeInsets.all(25),
         children: DUMMY_CATEGORIES
-            .map((catDate) => CategoryItem(
-                  title: catDate.title,
-                  color: catDate.color,
+            .map((catData) => CategoryItem(
+                  catData.id,
+                  catData.title,
+                  catData.color,
                 ))
             .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
