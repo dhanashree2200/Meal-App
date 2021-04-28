@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:meal_app/categories_screen.dart';
-import 'package:meal_app/category_item.dart';
-import 'package:meal_app/category_meals_screen.dart';
+import 'package:meal_app/screens/categories_screen.dart';
+import 'package:meal_app/screens/meal_detail_screen.dart';
+
+import 'screens/category_meals_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.pink,
@@ -31,7 +33,10 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold)),
       ),
       home: CategoriesScreen(),
-      routes: {CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen()},
+      routes: {
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+      },
     );
   }
 }
