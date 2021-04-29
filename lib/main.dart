@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/screens/categories_screen.dart';
 import 'package:meal_app/screens/meal_detail_screen.dart';
+import 'package:meal_app/screens/tabs_screen.dart';
 
 import 'screens/category_meals_screen.dart';
 
@@ -8,7 +9,7 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget { 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Raleway',
                 fontWeight: FontWeight.bold)),
       ),
-      home: CategoriesScreen(),
+      home: TabsScreen(),
       routes: {
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen()
