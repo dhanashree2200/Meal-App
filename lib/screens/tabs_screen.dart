@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/screens/categories_screen.dart';
 import 'package:meal_app/screens/favorites_screen.dart';
+import 'package:meal_app/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -31,6 +32,8 @@ class _TabsScreenState extends State<TabsScreen> {
         appBar: AppBar(
           title: Text(_pages[_selectedPageIndex]['title']),
         ),
+        //! Hamburger Drawer
+        drawer: MainDrawer(),
         body: _pages[_selectedPageIndex]['page'],
         bottomNavigationBar: BottomNavigationBar(
           onTap: _selectPage,
@@ -43,11 +46,11 @@ class _TabsScreenState extends State<TabsScreen> {
             BottomNavigationBarItem(
               // backgroundColor: Theme.of(context).primaryColor,  //! Used when Shifting animation is passed
               icon: Icon(Icons.category),
-              title: Text("Category"),
+              label: "Category",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.star),
-              title: Text("Favorites"),
+              label: "Favorites",
             ),
           ],
         ));
