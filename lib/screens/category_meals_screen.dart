@@ -1,34 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:meal_app/models/meal.dart';
 import 'package:meal_app/widgets/meal_item.dart';
-import '../dummy_data.dart';
 
-class CategoryMealsScreen extends StatelessWidget {
+class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category';
+  final List<Meal> availableMeals;
+
+  const CategoryMealsScreen(this.availableMeals);
+
   @override
-  Widget build(BuildContext context) {
+  _CategoryMealsScreenState createState() => _CategoryMealsScreenState();
+}
+
+class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
+  String categoryTitle;
+  List<Meal> displayMeal;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
     final routeArgs =
         ModalRoute.of(context).settings.arguments as Map<String, String>;
     print(routeArgs);
-    final title = routeArgs['title'];
+    categoryTitle = routeArgs['title'];
     final id = routeArgs['id'];
-    final categoryMeal = DUMMY_MEALS.where((meal) {
+    displayMeal = widget.availableMeals.where((meal) {
       return meal.categories.contains(id);
     }).toList();
+    super.didChangeDependencies();
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(categoryTitle),
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
-              title: categoryMeal[index].title,
-              id: categoryMeal[index].id,
-              imageUrl: categoryMeal[index].imageUrl,
-              duration: categoryMeal[index].duration,
-              complexity: categoryMeal[index].complexity,
-              affordability: categoryMeal[index].affordability);
+            title: displayMeal[index].title,
+            id: displayMeal[index].id,
+            imageUrl: displayMeal[index].imageUrl,
+            duration: displayMeal[index].duration,
+            complexity: displayMeal[index].complexity,
+            affordability: displayMeal[index].affordability,
+            // removeItem: _removeItem,
+          );
         },
-        itemCount: categoryMeal.length,
+        itemCount: displayMeal.length,
       ),
     );
   }
